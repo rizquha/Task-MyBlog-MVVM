@@ -1,0 +1,189 @@
+﻿@page
+@model IndexAdminModel
+@{
+    Layout="_LayoutAdmin";
+}
+
+<div class="text-center">
+    <button type="button" class="btn btn-info" style="background-color: deepskyblue; border-color:grey;width:150px;height:40px;" data-toggle="modal" data-target="#exampleModal1">Add</button>
+</div>
+    <hr class="mb-4">
+
+<section class="blog-post-area section-margin mt-4">
+      <div class="container">
+        <div class="row">
+            <div class="col-lg-4 sidebar-widgets">
+              <div class="widget-wrap">
+                <div class="single-sidebar-widget newsletter-widget">
+                  <h4 class="single-sidebar-widget__title">What Do You Want ?</h4>
+                  <div class="form-group mt-30">
+                    <div class="col-autos">
+                      <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter keyword" onfocus="this.placeholder = ''"
+                        onblur="this.placeholder = 'Enter email'">
+                    </div>
+                  </div>
+                  <button class="bbtns d-block mt-20 w-100">Search</button>
+                </div>
+
+
+                <div class="single-sidebar-widget post-category-widget">
+                  <h4 class="single-sidebar-widget__title">Catgory</h4>
+                  <ul class="cat-list mt-20">
+                    <li>
+                      <a href="#" class="d-flex justify-content-between">
+                        <p>Technology</p>
+                        <p>(03)</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="d-flex justify-content-between">
+                        <p>Software</p>
+                        <p>(09)</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="d-flex justify-content-between">
+                        <p>Lifestyle</p>
+                        <p>(12)</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="d-flex justify-content-between">
+                        <p>Shopping</p>
+                        <p>(02)</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="d-flex justify-content-between">
+                        <p>Food</p>
+                        <p>(10)</p>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+    @{
+        ViewBag.articles = ViewData["articles"];
+        ViewBag.name = ViewData["name"];
+
+        foreach(var item in ViewBag.articles)
+        {
+          <div class="col-lg-8">
+            <div class="single-recent-blog-post">
+              <div class="thumb">
+                <img class="img-fluid" src="@item.image" alt="">
+                <ul class="thumb-info">
+                  <li><a href="#"><i class="ti-user"></i>@item.id</a></li>
+                  <li><a href="#"><i class="ti-notepad"></i>January 12,2019</a></li>
+                  <li><a href="#"><i class="ti-themify-favicon"></i>Comments</a></li>
+                </ul>
+              </div>
+              <div class="details mt-20">
+                <a href="blog-single.html">
+                  <h3>@item.title</h3>
+                </a>
+                <p class="tag-list-inline">Tag: <a href="#">travel</a>, <a href="#">life style</a>, <a href="#">technology</a>, <a href="#">fashion</a></p>
+                <p>@item.detail</p>
+
+                <a class="button" style="color: white;" id="delete" onclick="window.location.href='/Detail?id=@item.id'">Read More <i class="ti-arrow-right"></i></a>
+                <form method="POST">
+                    <a class="button" type="button text-center" style="background-color: deepskyblue; border-color:grey;background-color:black;color:white;width:160px;" id="edit-@item.id" data-id="@item.id" data-title="@item.title" data-created="@item.created_at" data-detail="@item.detail" data-image="@item.image" data-toggle="modal" data-target="#exampleModal">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspEdit<i class="ti-arrow-right"></i></a>
+                </form>
+                <form method="POST">
+                    <input type="hidden" value="remove-@item.id" name="id">
+                    <button type="submit" class="button text-center" style="background-color: deepskyblue; border-color:grey;background-color:black;color:white;width:160px;" id="delete" >Delete</button>
+                </form> 
+              </div>
+            </div>
+            </div>
+            <div class="col-lg-4 sidebar-widgets">
+              <div class="widget-wrap">
+              </div>
+              </div>
+        }
+    }
+</div>
+        </div>
+    </div>
+</section>
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document" >
+        <div class="modal-content" style="width:500px;height:640px">
+          <div class="modal-header">
+            <h4 class="modal-title"><b>Update Data</b></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form method="POST">
+          <div class="modal-body text-center">
+            <label for="title"><b>Title</b></label><br>
+            <input type="text" name="identifier" class="form-control" value="edit" hidden>
+            <input type="text" name="id" id="id1" class="form-control" value="" hidden>
+            <input type="text" name="title" id="title1" class="form-control" value="">
+            <br><br>
+
+            <label for="description"><b>Description</b></label><br>
+            <input type="text"  name="description" id="description1" class="form-control" value="">
+            <br><br>
+
+            <label for="image"><b>Image</b></label><br>
+            <input type="text" name="image" id="image1" class="form-control" value="">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: red;color:white;" id="close">Close</button>
+            <button type="submit" class="btn btn-primary" id="savechanges" id="edit">Save changes</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="exampleModal1" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document" >
+        <div class="modal-content" style="width:500px;height:640px">
+          <div class="modal-header">
+            <h4 class="modal-title"><b>Add Data</b></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form method="POST">
+          <div class="modal-body text-center">
+            <label for="title"><b>Title</b></label><br>
+            <input type="text" name="identifier" class="form-control" value="add" hidden>
+            <input type="text" name="id" id="id1" class="form-control" value="add" hidden>
+            <input type="text" name="title" id="title2" class="form-control">
+            <br><br>
+
+            <label for="description"><b>Description</b></label><br>
+            <input type="text"  name="description" id="description2" class="form-control" value="">
+            <br><br>
+
+            <label for="image"><b>Image</b></label><br>
+            <input type="text" name="image" id="image2" class="form-control" value="">
+            <br><br><br><br>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: red;color:white;" id="close">Close</button>
+            <button type="submit" class="btn btn-primary" id="savechanges" id="add">Add Data</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+        console.log('Masuk Sini')
+        $('#exampleModal').on('show.bs.modal', function (e) {
+        $('#id1').val($(e.relatedTarget).data('id'))
+        $('#title1').val($(e.relatedTarget).data('title'))
+        $('#description1').val($(e.relatedTarget).data('detail'))
+        $('#image1').val($(e.relatedTarget).data('image'))
+    })})
+</script>
+
