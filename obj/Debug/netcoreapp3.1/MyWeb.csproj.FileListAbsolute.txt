@@ -91,3 +91,4 @@ D:\Users\bsi50129\.vscode\Task MVVM\MyWeb\bin\Debug\netcoreapp3.1\Microsoft.AspN
 D:\Users\bsi50129\.vscode\Task MVVM\MyWeb\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll
 D:\Users\bsi50129\.vscode\Task MVVM\MyWeb\obj\Debug\netcoreapp3.1\Razor\Pages\DetailNotLogin.cshtml.g.cs
 D:\Users\bsi50129\.vscode\Task MVVM\MyWeb\obj\Debug\netcoreapp3.1\Razor\Pages\IndexUserNotLogin.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task MVVM\MyWeb\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Twitter.dll

@@ -12,6 +12,7 @@ using MyWeb.Models;
 
 namespace MyWeb.Pages
 {
+    [Authorize]
     public class IndexAdminModel : PageModel
     {
         private readonly ApplicationDbContext _AppDbContext;
@@ -28,15 +29,14 @@ namespace MyWeb.Pages
         }
         [BindProperty]
         public Articles Articles {get;set;}
-        [Authorize]
         public void OnGet()
         { 
-            var articles = from i in _AppDbContext.article select i;
+            var articles = from y in _AppDbContext.article select y;
             ViewData["articles"]=articles;
             var id1 = _userManager.Users.ToList();
-            ViewData["list"]=id1;     
+            ViewData["list"]=id1;
+
         }
-        [Authorize]
         public void OnPost(string id, string title, string image, string description,string identifier)
         {
             var articles = from i in _AppDbContext.article select i;

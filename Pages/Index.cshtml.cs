@@ -12,6 +12,7 @@ using MyWeb.Models;
 
 namespace MyWeb.Pages
 {
+    
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _AppDbContext;
