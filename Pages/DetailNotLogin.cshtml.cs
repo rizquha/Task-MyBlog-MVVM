@@ -11,14 +11,14 @@ using MyWeb.Models;
 
 namespace MyWeb.Pages
 {
-    public class IndexUserModel : PageModel
+    public class DetailNotLoginModel : PageModel
     {
         private readonly ApplicationDbContext _AppDbContext;
-        private readonly ILogger<IndexUserModel> _logger;
+        private readonly ILogger<DetailNotLoginModel> _logger;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
 
-        public IndexUserModel(ILogger<IndexUserModel> logger,ApplicationDbContext AppDbContext,SignInManager<IdentityUser> signInManager,UserManager<IdentityUser> UserManager)
+        public DetailNotLoginModel(ILogger<DetailNotLoginModel> logger,ApplicationDbContext AppDbContext,SignInManager<IdentityUser> signInManager,UserManager<IdentityUser> UserManager)
         {
             _logger = logger;
             _AppDbContext = AppDbContext;
@@ -28,15 +28,10 @@ namespace MyWeb.Pages
         [BindProperty]
         public Articles Articles {get;set;}
 
-        public void OnGet()
+        public void OnGet(int id)
         { 
-            var articles = from i in _AppDbContext.article select i;
-            ViewData["articles"]=articles;
-            var id1 = _userManager.Users.ToList();
-            ViewData["list"]=id1;
-
-
-
+            var article = _AppDbContext.article.Find(id);
+            ViewData["article"]=article;
         }
     }
 }

@@ -3,8 +3,10 @@
 @{
     Layout="_LayoutAdmin";
 }
-
 <div class="text-center">
+              <br><br><br><br>
+    <h1 class="display-4">Welcome Admin</h1>
+    <p>Manage Your Articles To Always Update</p>
     <button type="button" class="btn btn-info" style="background-color: deepskyblue; border-color:grey;width:150px;height:40px;" data-toggle="modal" data-target="#exampleModal1">Add</button>
 </div>
     <hr class="mb-4">
@@ -74,9 +76,17 @@
               <div class="thumb">
                 <img class="img-fluid" src="@item.image" alt="">
                 <ul class="thumb-info">
-                  <li><a href="#"><i class="ti-user"></i>@item.id</a></li>
-                  <li><a href="#"><i class="ti-notepad"></i>January 12,2019</a></li>
-                  <li><a href="#"><i class="ti-themify-favicon"></i>Comments</a></li>
+                   @{
+                    ViewBag.list = ViewData["list"];
+                    foreach(var i in ViewBag.list)
+                    {
+                      if(i.Id == @item.UserId)
+                      {
+                        <li><a href="#"><i class="ti-user"></i>@i.UserName</a></li>
+                      }
+                    }
+                  }
+                  <li><a href="#"><i class="ti-notepad"></i>@item.created_at.Day/@item.created_at.Month/@item.created_at.Year</a></li>
                 </ul>
               </div>
               <div class="details mt-20">
@@ -85,15 +95,18 @@
                 </a>
                 <p class="tag-list-inline">Tag: <a href="#">travel</a>, <a href="#">life style</a>, <a href="#">technology</a>, <a href="#">fashion</a></p>
                 <p>@item.detail</p>
-
+                <div class="container">
+                  <div class="row">
                 <a class="button" style="color: white;" id="delete" onclick="window.location.href='/Detail?id=@item.id'">Read More <i class="ti-arrow-right"></i></a>
-                <form method="POST">
-                    <a class="button" type="button text-center" style="background-color: deepskyblue; border-color:grey;background-color:black;color:white;width:160px;" id="edit-@item.id" data-id="@item.id" data-title="@item.title" data-created="@item.created_at" data-detail="@item.detail" data-image="@item.image" data-toggle="modal" data-target="#exampleModal">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspEdit<i class="ti-arrow-right"></i></a>
+                &nbsp&nbsp&nbsp<form method="POST">
+                    <a class="button" type="button text-center" style="color:white;width:155px;" id="edit-@item.id" data-id="@item.id" data-title="@item.title" data-created="@item.created_at" data-detail="@item.detail" data-image="@item.image" data-toggle="modal" data-target="#exampleModal">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspEdit<i class="ti-arrow-right"></i></a>
                 </form>
-                <form method="POST">
+                &nbsp&nbsp&nbsp<form method="POST">
                     <input type="hidden" value="remove-@item.id" name="id">
-                    <button type="submit" class="button text-center" style="background-color: deepskyblue; border-color:grey;background-color:black;color:white;width:160px;" id="delete" >Delete</button>
-                </form> 
+                    <button type="submit" class="button text-center" style="color:white;width:155px;" id="delete" >Delete</button>
+                </form>
+                </div>
+                </div>
               </div>
             </div>
             </div>
@@ -121,15 +134,15 @@
             <label for="title"><b>Title</b></label><br>
             <input type="text" name="identifier" class="form-control" value="edit" hidden>
             <input type="text" name="id" id="id1" class="form-control" value="" hidden>
-            <input type="text" name="title" id="title1" class="form-control" value="">
+            <input style="height: 80px;" type="text" name="title" id="title1" class="form-control" value="">
             <br><br>
 
             <label for="description"><b>Description</b></label><br>
-            <input type="text"  name="description" id="description1" class="form-control" value="">
+            <input style="height: 80px;" type="text"  name="description" id="description1" class="form-control" value="">
             <br><br>
 
             <label for="image"><b>Image</b></label><br>
-            <input type="text" name="image" id="image1" class="form-control" value="">
+            <input style="height: 80px;" type="text" name="image" id="image1" class="form-control" value="">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: red;color:white;" id="close">Close</button>
@@ -153,15 +166,15 @@
             <label for="title"><b>Title</b></label><br>
             <input type="text" name="identifier" class="form-control" value="add" hidden>
             <input type="text" name="id" id="id1" class="form-control" value="add" hidden>
-            <input type="text" name="title" id="title2" class="form-control">
+            <input style="height: 60px;" type="text" name="title" id="title2" class="form-control">
             <br><br>
 
             <label for="description"><b>Description</b></label><br>
-            <input type="text"  name="description" id="description2" class="form-control" value="">
+            <input style="height: 60px;" type="text"  name="description" id="description2" class="form-control" value="">
             <br><br>
 
             <label for="image"><b>Image</b></label><br>
-            <input type="text" name="image" id="image2" class="form-control" value="">
+            <input style="height: 60px;" type="text" name="image" id="image2" class="form-control" value="">
             <br><br><br><br>
 
           </div>

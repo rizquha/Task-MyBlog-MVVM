@@ -33,23 +33,39 @@ namespace MyWeb.Pages
         public IActionResult OnGet()
         { 
             var id = _userManager.GetUserId(User);
+            if(id==null)
+            {
+                return new RedirectToPageResult("IndexUserNotLogin");
+            }else{
             var id1 = _userManager.Users.ToList();
             var adminId = id1[0].Id;
-
-            var role = new Roles
-            {
-                UserId = adminId,
-                status ="admin"
-            };
-            _AppDbContext.Add(role);
-            _AppDbContext.SaveChanges();
+            var x = from i in _AppDbContext.role select i;
             if( id==adminId)
             {
+            if (!_AppDbContext.role.Any())
+            {
+                var role = new Roles
+                    {
+                        UserId = adminId,
+                        status ="admin"
+                    };
+                 _AppDbContext.Add(role);
+                 _AppDbContext.SaveChanges();
+            }else{
+                 var role = new Roles
+                    {
+                        UserId = adminId,
+                        status ="admin"
+                    };
+                 _AppDbContext.Add(role);
+                 _AppDbContext.SaveChanges();
+            }
                 return new RedirectToPageResult("IndexAdmin");
             }
             else
             {
                 return new RedirectToPageResult("IndexUser");
+            }
             }
         }
     }

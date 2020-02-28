@@ -89,3 +89,5 @@ D:\Users\bsi50129\.vscode\Task MVVM\MyWeb\bin\Debug\netcoreapp3.1\vendors\themif
 D:\Users\bsi50129\.vscode\Task MVVM\MyWeb\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Facebook.dll
 D:\Users\bsi50129\.vscode\Task MVVM\MyWeb\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Google.dll
 D:\Users\bsi50129\.vscode\Task MVVM\MyWeb\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll
+D:\Users\bsi50129\.vscode\Task MVVM\MyWeb\obj\Debug\netcoreapp3.1\Razor\Pages\DetailNotLogin.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task MVVM\MyWeb\obj\Debug\netcoreapp3.1\Razor\Pages\IndexUserNotLogin.cshtml.g.cs

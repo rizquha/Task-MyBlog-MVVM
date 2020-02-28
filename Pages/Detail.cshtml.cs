@@ -32,8 +32,16 @@ namespace MyWeb.Pages
         { 
             var article = _AppDbContext.article.Find(id);
             ViewData["article"]=article;
-            var comment = from i in _AppDbContext.comments select i;
+            var comment = from i in _AppDbContext.comments where i.ArticleId==id select i;
             ViewData["comment"]=comment;
+            var id1 = _userManager.Users.ToList();
+            ViewData["list1"]=id1;
+            var count=0;
+            foreach(var i in comment)
+            {
+                count+=1;
+            }
+            ViewData["count"]=count.ToString();
         }
         public IActionResult OnPost(string comment, int id)
         {
@@ -43,7 +51,9 @@ namespace MyWeb.Pages
             var x = new Comments
             {
                 userId = idUser,
-                comment = cmnt
+                comment = cmnt,
+                created_at = DateTime.Now,
+                ArticleId = id
             };
             _AppDbContext.Add(x);
             _AppDbContext.SaveChanges();

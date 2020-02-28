@@ -1,0 +1,27 @@
+﻿@page
+@model DetailNotLoginModel
+@{
+    Layout="_LayoutAdmin";
+}
+<br><br><br><br>
+<div class="text-center">
+    <h1 class="display-4">Your Detail News</h1>
+    <p>Always Update About Things Happening In The World</p>
+    <hr class="mb-4">
+</div>
+<div class="text-left">
+    @{
+        ViewBag.article = ViewData["article"];
+        var item = ViewBag.article;
+            <div>
+                <h3><b>@item.title</b></h3>
+                <div class="column-image">
+                    <img src=@item.image width="400px" height="400px">
+                </div>
+                <h6>@item.detail</h6>>
+                <h5>@item.created_at</h5>
+            </div>
+            }
+</div>
+
+

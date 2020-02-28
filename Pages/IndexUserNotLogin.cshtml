@@ -1,14 +1,9 @@
 ﻿@page
-@model IndexUserModel
+@model IndexUserNotLoginModel
 @{
     Layout="_LayoutUser";
 }
-            <br><br><br><br>
-<div class="text-center">
-    <h1 class="display-4">Welcome To MagaZone</h1>
-    <p>The Zone For You Who Want To Keep Uptodate On The Latest News</p>
-    <hr class="mb-4">
-</div>
+<br><br><br><br>
     <section class="blog-post-area section-margin mt-4">
       <div class="container">
         <div class="row">
@@ -66,7 +61,6 @@
     @{
         ViewBag.articles = ViewData["articles"];
         ViewBag.name = ViewData["name"];
-
         foreach(var item in ViewBag.articles)
         {
           <div class="col-lg-8">
@@ -88,7 +82,7 @@
                 </ul>
               </div>
               <div class="details mt-20">
-                <a href="blog-single.html">
+                <a href="/DetailNotLogin?id=@item.id">
                   <h3>@item.title</h3>
                 </a>
                 <p class="tag-list-inline">Tag: <a href="#">travel</a>, <a href="#">life style</a>, <a href="#">technology</a>, <a href="#">fashion</a></p>

@@ -11,14 +11,14 @@ using MyWeb.Models;
 
 namespace MyWeb.Pages
 {
-    public class IndexUserModel : PageModel
+    public class IndexUserNotLoginModel : PageModel
     {
         private readonly ApplicationDbContext _AppDbContext;
-        private readonly ILogger<IndexUserModel> _logger;
+        private readonly ILogger<IndexUserNotLoginModel> _logger;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
 
-        public IndexUserModel(ILogger<IndexUserModel> logger,ApplicationDbContext AppDbContext,SignInManager<IdentityUser> signInManager,UserManager<IdentityUser> UserManager)
+        public IndexUserNotLoginModel(ILogger<IndexUserNotLoginModel> logger,ApplicationDbContext AppDbContext,SignInManager<IdentityUser> signInManager,UserManager<IdentityUser> UserManager)
         {
             _logger = logger;
             _AppDbContext = AppDbContext;
@@ -34,9 +34,8 @@ namespace MyWeb.Pages
             ViewData["articles"]=articles;
             var id1 = _userManager.Users.ToList();
             ViewData["list"]=id1;
-
-
-
+            var comments = from i in _AppDbContext.comments select i;
+            ViewData["comments"]= comments;
         }
     }
 }

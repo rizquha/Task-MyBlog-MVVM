@@ -33,8 +33,8 @@ namespace MyWeb.Pages
         { 
             var articles = from i in _AppDbContext.article select i;
             ViewData["articles"]=articles;
-
-            
+            var id1 = _userManager.Users.ToList();
+            ViewData["list"]=id1;     
         }
         [Authorize]
         public void OnPost(string id, string title, string image, string description,string identifier)
